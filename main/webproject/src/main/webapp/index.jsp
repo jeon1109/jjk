@@ -4,12 +4,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content ="width=device-width">
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 <title>vue로 게시판 만들기</title>
+
+<style>
+	[v-cloak] {
+		display : none;
+	}
+</style>
+
 </head>
 <body>
+<v-alert class="mb-3" :value="good" type="success">
+	로그인
+	</v-alert>
 <nav class ="navbar navbar-default">
 	 <div class="navbar-header"> <!-- 홈페이지의 로고 -->
   		<button type="button" class="navbar-toggle collapsed"
@@ -21,7 +32,7 @@
                <span class ="icon-bar"></span>
                
         </button>
-         <a class ="navbar-brand">JSP 게시판 웹 사이트</a>
+         <a class ="navbar-brand">vue로 게시판 만들기</a>
 	 </div>
 	 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	 	 <ul class="nav navbar-nav">
@@ -63,27 +74,33 @@
             
             </table>
 	 </div>
-	 <a style="float: right; cursor: pointer;" class="btn btn-primary pull-right" href="">등록하기</a>
+	 <a style="float: right; cursor: pointer;" class="btn btn-primary pull-right" href="/webproject/src/main/webapp/WEB-INF/jsp/addInfo.jsp">등록하기</a>
 </div>
-<div id="app">
-	<h1>hello {{name}}</h1>
-	<input type="text" v-model="name">
-	<ul>
-		<li v-for="framework in framework">{{framework}}</li>
-	</ul>
-	<div>{{framework}}</div>
-	<p>{{myText * 1.08}}</p>
-	<p>{{"안녕하세요~ "+myName + "님"}}</p>
-	<p>{{myName.substr(0,1)}}</p>
+<div id="app" v-cloak>
+	<h1>{{hello}}</h1>
+	<button @click="changeTheMsg">change message</button>
 </div>
+
+ <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script> 
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-	const app = new Vue({
-		el : "#app",
+	var app = new Vue ({
+		el : '#app',
 		data : {
-			name : "scalper",
-			framework: ["john", "vue", "gil"],
-			myText : 500,
-			myName : '홍길동'
+			hello : "hello world"	
+		},
+		methods : {
+			async changeTheMsg() {
+				const res = await axios.get('https://jsonplaceholder.typicode.com/todos/1');
+				if(res.status === 200){
+					console.log(res.data);
+					this.hello = res.data.title;
+				}
+				else {
+					console.log('error'); 
+				}
+			}
 		}
 	})
 </script>
