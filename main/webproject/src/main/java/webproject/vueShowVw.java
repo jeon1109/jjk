@@ -1,16 +1,23 @@
 package webproject;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class vueShowVw {
 
-	@RequestMapping(value = "/addinfo.do", method = RequestMethod.GET)
-	public String showAddView() {
-		
-		return "/jsp/addinfo.jsp";
+	@RequestMapping(value="/home.do")
+	public String home(ModelMap model)throws Exception {
+		System.out.println("접속하기      test !!!!!!!!!!!!!!!!!!!!!");
+		return "home";
+	}
+	
+	@RequestMapping(value="/addInfo.do")
+	public String addInfo(ModelMap model)throws Exception {
+		System.out.println("접속하기      addInfo !!!!!!!!!!!!!!!!!!!!!");
+		return "addInfo";
 	}
 
 }
