@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -5,8 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content ="width=device-width">
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<%@ include file="/WEB-INF/jsp/includeCss.jsp"%>
 
 <title>vue로 게시판 만들기</title>
 
@@ -71,29 +71,18 @@
 		 </div>
 		 <a id="addVw" class="btn btn-primary pull-right" href="addInfo.do">등록하기</a>
 	</div>
-	{{ message }}
+	
 </div>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script> 
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script src="/resources/js/vueRead.js"></script>
 
+<script src="/resources/js/vueRead.js"></script>
  <script>
  
- new Vue ({
-		el : '#app',
-		data : {
-			message : 'test'
-		},
-		beforeCreate : function(){
-			console.log("beforeCreate");
-		},
-		created : function(){
-			console.log("created");
-		}
-		
-	});
-
+ 	(function() {
+ 		
+ 		vue.ui.init();
+ 		
+ 	});
+ 
  </script>
 </body>
 </html>

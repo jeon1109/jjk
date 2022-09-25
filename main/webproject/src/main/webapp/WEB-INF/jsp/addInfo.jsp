@@ -4,18 +4,38 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<meta name="viewport" content ="width=device-width">
+<%@ include file="/WEB-INF/jsp/includeCss.jsp"%>
 
 <title>Insert title here</title>
 </head>
 <body>
 <h2>등록하기 화면</h2>
-<div id="app">
-	<li>이름 :</li><input v-model="input_model" placeholder="이름">
-	<input v-model.lazy="input_model" placeholder="이름">
-	<textarea v-model.lazy="textarea_model" placeholder="이름">
-	</textarea>
+<div class="col-md-12">
+    <div id="addEapp" class="col-md-4">
+        <form v-on:submit="submitForm">
+            <div class="form-group">
+                <label for="title">제목</label>
+                <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="author">작성자</label>
+                <input type="text" class="form-control" id="author" placeholder="작성자를 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="content">내용</label>
+                <textarea class="form-control" id="content" placeholder="내용을 입력하세요"></textarea>
+            </div>
+        
+        <a href="/home.do" role="button" class="btn btn-secondary">취소</a>
+        <button type="submit" class="btn btn-primary" id="btn-save" >등록</button>
+   		</form>
+    </div>
 </div>
+<script src="/resources/js/addInfo.js"></script>
+
+<script>
+	vue.add.init();
+</script>
 </body>
 </html>

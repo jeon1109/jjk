@@ -10,7 +10,7 @@ public class vueShowVw {
 
 	@RequestMapping(value="/home.do")
 	public String home(ModelMap model)throws Exception {
-		System.out.println("접속하기      test !!!!!!!!!!!!!!!!!!!!!");
+		System.out.println("접속하기      home !!!!!!!!!!!!!!!!!!!!!");
 		return "home";
 	}
 	
