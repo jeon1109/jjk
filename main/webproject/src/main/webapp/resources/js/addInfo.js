@@ -12,36 +12,39 @@ vue.add = (function() {
 		new Vue ({
 			el : '#addEapp',
 			data : {
-				title : document.querySelector("#title"),
-				author : document.querySelector("#author"),
-				content : document.querySelector("#content"),
+				title : document.querySelector("#title").value,
+				author : document.querySelector("#author").value,
+				age : document.querySelector("#age").value,
+				context : document.querySelector("#context").value,
 			},
 			 methods: { // 메서드 구현
-				submitForm: function(event) {
-					var form = new FormData();
-					form.append("title", this.title);
-					form.append("author", this.author);
-					form.append("content", this.content);
-					console.log(form);
+				submitForm: function() {
 					
+					var form = new FormData(formSub);
+					form.append("title", title.value);
+					form.append("author", author.value);
+					form.append("context", context.value);
+					form.append("age", age.value);
+										
 					const config = {
-						 method: 'POST', // 또는 'PUT'
-						  headers: {
-						    'Content-Type': 'application/json',
-						  }
+						method: 'POST', // 또는 'PUT'
+						body: form,
+					    processData: false,
+            			contentType: false,
+						headers: {
+					          'Content-Type': 'application/x-www-form-urlencoded'
+					    }
 					};
+					
 		
-					const url = "/insert.do";
-					console.log(url);
-					fetch("/insert.do", config).then(function(){
+					fetch("/insert.do", config).then(function(res){
 						alert("성공");
+						window.location.href = "/addInfo.do";
 					});
 				}
 			}
 		
 		});
-		
-		
 	} 
 	
 	function component(){
